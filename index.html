@@ -1,1 +1,384 @@
-index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>YuriSync</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #635bff;
+    }
+
+    .status {
+      background: #eef2ff;
+      color: #4f46e5;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .welcome {
+      margin-bottom: 25px;
+    }
+
+    .welcome h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #667085;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+    }
+
+    .upload {
+      border: 2px dashed #c7cce0;
+      border-radius: 14px;
+      padding: 45px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .upload:hover {
+      border-color: #635bff;
+      background: #fafaff;
+    }
+
+    .upload-icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+    }
+
+    .upload h2 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .upload p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .file-name {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #635bff;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d9deea;
+      border-radius: 9px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #635bff;
+    }
+
+    .platforms {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .platform {
+      border: 1px solid #e0e4ed;
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .platform:hover {
+      background: #f8f8ff;
+    }
+
+    .platform input {
+      width: 18px;
+      height: 18px;
+    }
+
+    .platform-icon {
+      font-size: 25px;
+    }
+
+    .platform-name {
+      font-weight: bold;
+    }
+
+    .platform-status {
+      display: block;
+      color: #98a2b3;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .publish {
+      width: 100%;
+      margin-top: 25px;
+      padding: 16px;
+      border: none;
+      border-radius: 10px;
+      background: #635bff;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .publish:hover {
+      background: #5148e5;
+    }
+
+    .info {
+      text-align: center;
+      color: #98a2b3;
+      font-size: 13px;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 15px;
+      }
+
+      .container {
+        margin: 25px auto;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .platforms {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome h1 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Yuri<span>Sync</span></div>
+  <div class="status">● Sistema online</div>
+</header>
+
+<main class="container">
+
+  <div class="welcome">
+    <h1>Central de Publicação</h1>
+    <p>Publique seu vídeo uma vez em várias redes sociais.</p>
+  </div>
+
+  <section class="card">
+
+    <label for="video" class="upload">
+
+      <div class="upload-icon">📤</div>
+
+      <h2>Envie seu vídeo</h2>
+
+      <p>
+        Clique aqui para selecionar um vídeo
+      </p>
+
+      <p>
+        MP4, MOV ou outros formatos compatíveis
+      </p>
+
+      <input type="file" id="video" accept="video/*">
+
+      <div class="file-name" id="fileName"></div>
+
+    </label>
+
+    <label for="title">Título do vídeo</label>
+    <input
+      type="text"
+      id="title"
+      placeholder="Digite o título do vídeo"
+    >
+
+    <label for="description">Legenda / descrição</label>
+    <textarea
+      id="description"
+      placeholder="Digite a legenda que será usada na publicação..."
+    ></textarea>
+
+    <label for="hashtags">Hashtags</label>
+    <input
+      type="text"
+      id="hashtags"
+      placeholder="#curiosidades #mistérios #fatos"
+    >
+
+  </section>
+
+  <section class="card">
+
+    <h2>📱 Publicar em</h2>
+
+    <div class="platforms">
+
+      <label class="platform">
+        <input type="checkbox" checked>
+        <span class="platform-icon">▶️</span>
+        <span>
+          <span class="platform-name">YouTube Shorts</span>
+          <span class="platform-status">Não conectado</span>
+        </span>
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" checked>
+        <span class="platform-icon">🎵</span>
+        <span>
+          <span class="platform-name">TikTok</span>
+          <span class="platform-status">Não conectado</span>
+        </span>
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" checked>
+        <span class="platform-icon">📸</span>
+        <span>
+          <span class="platform-name">Instagram Reels</span>
+          <span class="platform-status">Não conectado</span>
+        </span>
+      </label>
+
+      <label class="platform">
+        <input type="checkbox" checked>
+        <span class="platform-icon">📘</span>
+        <span>
+          <span class="platform-name">Facebook Reels</span>
+          <span class="platform-status">Não conectado</span>
+        </span>
+      </label>
+
+    </div>
+
+    <button class="publish" onclick="publishVideo()">
+      🚀 PUBLICAR NAS REDES
+    </button>
+
+  </section>
+
+  <p class="info">
+    YuriSync — Publique uma vez. Alcance todos.
+  </p>
+
+</main>
+
+<script>
+
+  const videoInput = document.getElementById("video");
+  const fileName = document.getElementById("fileName");
+
+  videoInput.addEventListener("change", function() {
+
+    if (this.files.length > 0) {
+      fileName.textContent =
+        "Vídeo selecionado: " + this.files[0].name;
+    }
+
+  });
+
+  function publishVideo() {
+
+    const title = document.getElementById("title").value;
+
+    if (!videoInput.files.length) {
+      alert("Primeiro selecione um vídeo.");
+      return;
+    }
+
+    if (!title) {
+      alert("Digite um título para o vídeo.");
+      return;
+    }
+
+    alert(
+      "Protótipo YuriSync funcionando! 🚀\n\n" +
+      "A publicação automática nas redes será conectada na próxima etapa."
+    );
+
+  }
+
+</script>
+
+</body>
+</html>
